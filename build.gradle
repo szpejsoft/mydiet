@@ -2,9 +2,16 @@
 
 buildscript {
     ext.kotlin_version = '1.2.51'
+    ext.roomVersion = '1.1.1'
+    ext.archLifecycleVersion = '1.1.1'
+    ext.jodaTimeVersion = '2.10'
+    ext.rxJavaVersion = "2.1.13"
+    ext.rxJavaAndroidVersion = "2.0.2"
+    ext.rxKotlin = "2.2.0"
     repositories {
         google()
         jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
