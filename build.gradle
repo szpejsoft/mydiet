@@ -8,6 +8,7 @@ buildscript {
     ext.rxJavaVersion = "2.1.13"
     ext.rxJavaAndroidVersion = "2.0.2"
     ext.rxKotlin = "2.2.0"
+    ext.androidSupportVersion = "27.1.1"
     repositories {
         google()
         jcenter()
