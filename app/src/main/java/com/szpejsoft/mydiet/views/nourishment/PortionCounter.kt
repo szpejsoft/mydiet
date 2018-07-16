@@ -10,12 +10,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.get
-import androidx.core.widget.toast
 import com.szpejsoft.mydiet.R
 import com.szpejsoft.mydiet.getPx
 import kotlinx.android.synthetic.main.portion_counter.view.*
 
-class PortionCounter constructor(context: Context, attrs: AttributeSet?, @AttrRes defStyleAttr: Int) : FrameLayout(context, attrs, defStyleAttr) {
+class PortionCounter constructor(context: Context, attrs: AttributeSet? = null, @AttrRes defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
@@ -35,8 +34,8 @@ class PortionCounter constructor(context: Context, attrs: AttributeSet?, @AttrRe
 
     val onCountChangedListeners = mutableSetOf<OnCountChangedListener>()
 
-    var eaten: Int = 0
-    var allowed: Int = 0
+    private var eaten: Int = 0
+    private var allowed: Int = 0
 
     fun addOnCountChangeListener(listener: OnCountChangedListener) {
         onCountChangedListeners.add(listener)
@@ -102,36 +101,43 @@ class PortionCounter constructor(context: Context, attrs: AttributeSet?, @AttrRe
 
     //index is starting from 1
     private fun checkClicked(index: Int) {
-        when {
-            index == eaten && eaten > allowed -> {
-                portionsLay.removeViewAt(getLayoutIndex(eaten))
-                eaten--
-            }
-            index == eaten && eaten <= allowed -> {
-                (portionsLay[getLayoutIndex(index)] as AppCompatImageView)
-                        .setImageDrawable(allowedUncheckedDrawable)
-                if (eaten == allowed) portionsLay.removeViewAt(getLayoutIndex(eaten) + 1)
-                eaten--
-            }
-            index == eaten + 1 && eaten + 1 <= allowed -> {
-                (portionsLay[getLayoutIndex(index)] as AppCompatImageView)
-                        .setImageDrawable(allowedCheckedDrawable)
-                if (eaten + 1 == allowed) addNotCheckedSurfeitView()
-                eaten++
-
-            }
-            index == eaten + 1 && eaten + 1 > allowed -> {
-                (portionsLay[getLayoutIndex(index)] as AppCompatImageView)
-                        .setImageDrawable(surfeitCheckedDrawable)
-                addNotCheckedSurfeitView()
-                eaten++
-            }
+        when (index) {
+            eaten -> handleLastCheckedClicked()
+            eaten + 1 -> handleFirstUncheckedClicked()
         }
         onCountChangedListeners.forEach { it.onCountChanged(eaten, allowed) }
     }
 
+    private fun handleLastCheckedClicked() {
+        val clickedView = portionsLay[getLayoutIndex(eaten)] as AppCompatImageView
+        when {
+            eaten > allowed ->
+                portionsLay.removeView(clickedView)
+            eaten == allowed -> {
+                clickedView.setImageDrawable(allowedUncheckedDrawable)
+                portionsLay.removeViewAt(getLayoutIndex(eaten) + 1)
+            }
+            eaten <= allowed -> clickedView.setImageDrawable(allowedUncheckedDrawable)
+        }
+        eaten--
+    }
 
-
+    private fun handleFirstUncheckedClicked() {
+        val clickedIndex = eaten + 1
+        val clickedView = portionsLay[getLayoutIndex(clickedIndex)] as AppCompatImageView
+        when {
+            clickedIndex < allowed -> clickedView.setImageDrawable(allowedCheckedDrawable)
+            clickedIndex == allowed -> {
+                clickedView.setImageDrawable(allowedCheckedDrawable)
+                addNotCheckedSurfeitView()
+            }
+            clickedIndex > allowed -> {
+                clickedView.setImageDrawable(surfeitCheckedDrawable)
+                addNotCheckedSurfeitView()
+            }
+        }
+        eaten++
+    }
 
     private fun getLayoutIndex(index: Int) = index - 1
 

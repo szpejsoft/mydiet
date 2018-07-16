@@ -12,7 +12,7 @@ class NourishmentViewModel : INourishmentViewModel {
     override val nextMealWaitingTime = MutableLiveData<Int>()
 
     init {
-        fruitsEatenAllowedData.postValue(Pair(5, 2))
+        fruitsEatenAllowedData.postValue(Pair(3, 2))
         vegetablesEatenAllowedData.postValue(Pair(4, 4))
         grainEatenAllowedData.postValue(Pair(4, 0))
         dairyEatenAllowedData.postValue(Pair(4, 1))
