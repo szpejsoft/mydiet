@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .DS_Store
+.gradle
