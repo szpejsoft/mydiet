@@ -3,4 +3,11 @@
     <string name="nourishment">Nourishment</string>
     <string name="measurements">Measurements</string>
     <string name="settings">settings</string>
+    <string name="nourishment_fruits">Fruits</string>
+    <string name="nourishment_vegetables">Vegetables</string>
+    <string name="nourishment_grain_products">Grain products</string>
+    <string name="nourishment_dairy">Dairy</string>
+    <string name="nourishment_meat">Meat, fish, eggs, legumes</string>
+    <string name="nourishment_fat">Fat</string>
+    <string name="nourishment_next_alarm">Set next meal alarm</string>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- text -->
+    <dimen name="text_large">24sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+
+    <!-- margins -->
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_medium">18dp</dimen>
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="margin_tiny">8dp</dimen>
+
+    <dimen name="default_height">48dp</dimen>
+
+
+</resources>

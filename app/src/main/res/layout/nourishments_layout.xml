@@ -1,13 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Nourishments"
-        android:textSize="36sp" />
+        android:orientation="vertical"
+        android:padding="@dimen/margin_small">
 
-</FrameLayout>
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/NourishmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/nourishment_fruits" />
+
+        <com.szpejsoft.mydiet.views.nourishment.PortionCounter
+            android:id="@+id/fruitsPortionCounter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/NourishmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/nourishment_vegetables" />
+
+        <com.szpejsoft.mydiet.views.nourishment.PortionCounter
+            android:id="@+id/vegetablesPortionCounter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginBottom="@dimen/margin_small" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/NourishmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/nourishment_grain_products" />
+
+        <com.szpejsoft.mydiet.views.nourishment.PortionCounter
+            android:id="@+id/grainProductsPortionCounter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginBottom="@dimen/margin_small" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/NourishmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/nourishment_dairy" />
+
+        <com.szpejsoft.mydiet.views.nourishment.PortionCounter
+            android:id="@+id/dairyPortionCounter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginBottom="@dimen/margin_small" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/NourishmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/nourishment_meat" />
+
+        <com.szpejsoft.mydiet.views.nourishment.PortionCounter
+            android:id="@+id/meatPortionCounter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginBottom="@dimen/margin_small" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/NourishmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/nourishment_fat" />
+
+        <com.szpejsoft.mydiet.views.nourishment.PortionCounter
+            android:id="@+id/fatPortionCounter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_height"
+            android:layout_marginBottom="@dimen/margin_large" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/nourishment_next_alarm" />
+
+    </LinearLayout>
+</ScrollView>
+
+

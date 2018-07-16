@@ -48,7 +48,8 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$archLifecycleVersion"
 
     //Rx (java kotlin android)
-    implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
-    implementation "io.reactivex.rxjava2:rxandroid:${rxJavaAndroidVersion}"
-    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlin}"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJavaAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlin"
+    implementation "androidx.core:core-ktx:$ktxVersion"
 }
