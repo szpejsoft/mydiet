@@ -9,5 +9,14 @@ interface INourishmentViewModel {
     val dairyEatenAllowedData: LiveData<Pair<Int, Int>>
     val meatEatenAllowedData: LiveData<Pair<Int, Int>>
     val fatEatenAllowedData: LiveData<Pair<Int, Int>>
-    val nextMealWaitingTime: LiveData<Int> //minutes
+    val nextMealWaitingTime: LiveData<String>
+
+    fun onFruitsEatenChanged(eaten: Int)
+    fun onVegetablesEatenChanged(eaten: Int)
+    fun onGrainEatenChanged(eaten: Int)
+    fun onDairyEatenChanged(eaten: Int)
+    fun onMeatEatenChanged(eaten: Int)
+    fun onFatEatenChanged(eaten: Int)
+    fun onNextMealAlertSet()
+
 }

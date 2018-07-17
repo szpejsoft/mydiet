@@ -2,19 +2,26 @@ package com.szpejsoft.mydiet.views.nourishment
 
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
 import kotlinx.android.synthetic.main.nourishments_layout.*
+import javax.inject.Inject
 
-class NourishmentFragment : Fragment() {
-    private lateinit var nourishmentViewModel: INourishmentViewModel
+class NourishmentFragment : MyDietFragment() {
+
+    private val nourishmentViewModel: INourishmentViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(NourishmentViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        nourishmentViewModel = NourishmentViewModel()
+        getAppComponent().inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -23,10 +30,26 @@ class NourishmentFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        nourishmentViewModel.fruitsEatenAllowedData.observe(this, Observer { pair -> setFruitPortions(pair?.first, pair?.second) })
+        observeViewModel()
     }
 
-    private fun setFruitPortions(eaten: Int?, allowed: Int?) {
-        fruitsPortionCounter.setPortions(eaten ?: 0, allowed ?: 0)
+    private fun observeViewModel() {
+        nourishmentViewModel.dairyEatenAllowedData.observe(this, Observer { portions -> setPortions(portions, dairyPortionCounter) })
+        nourishmentViewModel.fatEatenAllowedData.observe(this, Observer { portions -> setPortions(portions, fatPortionCounter) })
+        nourishmentViewModel.fruitsEatenAllowedData.observe(this, Observer { portions -> setPortions(portions, fruitsPortionCounter) })
+        nourishmentViewModel.grainEatenAllowedData.observe(this, Observer { portions -> setPortions(portions, grainProductsPortionCounter) })
+        nourishmentViewModel.vegetablesEatenAllowedData.observe(this, Observer { portions -> setPortions(portions, vegetablesPortionCounter) })
+        nourishmentViewModel.meatEatenAllowedData.observe(this, Observer { portions -> setPortions(portions, meatPortionCounter) })
+        nourishmentViewModel.nextMealWaitingTime.observe(this, Observer { minutesToNextMeal -> setNextAlertButtonTitle(minutesToNextMeal) })
     }
+
+    private fun setNextAlertButtonTitle(minutes: String?) {
+        nextMealAlertButton.text = context?.getString(R.string.nourishment_next_alarm, minutes)
+    }
+
+    private fun setPortions(portions: Pair<Int, Int>?, portionCounter: PortionCounter) {
+        portionCounter.setPortions(portions?.first ?: 0, portions?.second ?: 0)
+    }
+
+
 }

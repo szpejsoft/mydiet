@@ -5,11 +5,14 @@ buildscript {
     ext.roomVersion = '1.1.1'
     ext.archLifecycleVersion = '1.1.1'
     ext.jodaTimeVersion = '2.10'
-    ext.rxJavaVersion = "2.1.13"
-    ext.rxJavaAndroidVersion = "2.0.2"
-    ext.rxKotlin = "2.2.0"
-    ext.androidSupportVersion = "27.1.1"
+    ext.rxJavaVersion = '2.1.13'
+    ext.rxJavaAndroidVersion = '2.0.2'
+    ext.rxKotlin = '2.2.0'
+    ext.androidSupportVersion = '27.1.1'
     ext.ktxVersion = '0.3'
+    ext.daggerVersion = '2.16'
+    ext.timberVersion = '4.7.0'
+    ext.daggerAndroidVersion = '2.16'
     repositories {
         google()
         jcenter()

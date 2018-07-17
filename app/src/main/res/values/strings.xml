@@ -9,5 +9,5 @@
     <string name="nourishment_dairy">Dairy</string>
     <string name="nourishment_meat">Meat, fish, eggs, legumes</string>
     <string name="nourishment_fat">Fat</string>
-    <string name="nourishment_next_alarm">Set next meal alarm</string>
+    <string name="nourishment_next_alarm">Set next meal alarm in %s</string>
 </resources>

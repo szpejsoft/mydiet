@@ -52,4 +52,18 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaAndroidVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlin"
     implementation "androidx.core:core-ktx:$ktxVersion"
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerAndroidVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerAndroidVersion"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
 }

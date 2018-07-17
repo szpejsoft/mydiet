@@ -14,7 +14,12 @@ import com.szpejsoft.mydiet.R
 import com.szpejsoft.mydiet.getPx
 import kotlinx.android.synthetic.main.portion_counter.view.*
 
-class PortionCounter constructor(context: Context, attrs: AttributeSet? = null, @AttrRes defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+class PortionCounter
+constructor(context: Context,
+            attrs: AttributeSet? = null,
+            @AttrRes defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
+
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
@@ -68,7 +73,7 @@ class PortionCounter constructor(context: Context, attrs: AttributeSet? = null, 
     private fun addAllowed(eaten: Int, allowed: Int) {
         for (i in 1..allowed) {
             val view = createView()
-            val drawable = if (i < eaten) allowedCheckedDrawable else allowedUncheckedDrawable
+            val drawable = if (i <= eaten) allowedCheckedDrawable else allowedUncheckedDrawable
             view.setImageDrawable(drawable)
             view.scaleType = ImageView.ScaleType.CENTER
             portionsLay.addView(view)

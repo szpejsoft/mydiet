@@ -1,23 +1,19 @@
 package com.szpejsoft.mydiet
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.szpejsoft.mydiet.views.measurements.MeasurementsFragment
 import com.szpejsoft.mydiet.views.nourishment.NourishmentFragment
-import com.szpejsoft.mydiet.views.nourishment.NourishmentViewModel
 import com.szpejsoft.mydiet.views.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MyDietActivity() {
     private lateinit var settingsFragment: SettingsFragment
     private lateinit var nourishmentFragment: NourishmentFragment
     private lateinit var measurementsFragment: MeasurementsFragment
-    private lateinit var nourishmentViewModel: NourishmentViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupNavigation()
-        nourishmentViewModel = NourishmentViewModel()
 
     }
 
