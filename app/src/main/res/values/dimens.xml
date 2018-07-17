@@ -11,7 +11,9 @@
     <dimen name="margin_small">12dp</dimen>
     <dimen name="margin_tiny">8dp</dimen>
 
-    <dimen name="default_height">48dp</dimen>
+    <dimen name="default_size">48dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
 
 
 </resources>
