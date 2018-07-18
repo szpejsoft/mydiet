@@ -28,7 +28,7 @@ class NumberPicker(context: Context,
         View.inflate(context, R.layout.number_picker_lay, this)
         plusBtn.setOnClickListener { increment() }
         minusBtn.setOnClickListener { decrement() }
-
+        setValue(0)
     }
 
     fun getValueObservable(): Observable<Int> = valueRelay
@@ -37,20 +37,37 @@ class NumberPicker(context: Context,
         if (min > max) throw IllegalArgumentException("min must me less or equal to max")
         minValue = min
         maxValue = max
-        value = clamp(min, max, value)
+        setValue(value)
     }
 
     fun setValue(value: Int) {
         this.value = clamp(minValue, maxValue, value)
-        valueRelay.accept(value)
+        valueRelay.accept(this.value)
+        numberTxt.text = "${this.value}"
     }
 
     private fun decrement() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (value > minValue) {
+            val newValue = --value
+            setValue(newValue)
+            valueRelay.accept(newValue)
+        }
+        enableDisableButtons()
     }
 
     private fun increment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (value < maxValue) {
+            val newValue = ++value
+            setValue(newValue)
+            valueRelay.accept(newValue)
+        }
+        enableDisableButtons()
+    }
+
+    private fun enableDisableButtons() {
+        minusBtn.isEnabled = value > minValue
+        plusBtn.isEnabled = value < maxValue
+
     }
 
     private fun clamp(min: Int, max: Int, value: Int): Int = when {

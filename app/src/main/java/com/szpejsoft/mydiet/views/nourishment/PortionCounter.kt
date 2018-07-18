@@ -23,10 +23,10 @@ constructor(context: Context,
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    private val surfeitUncheckedDrawable = ContextCompat.getDrawable(context, R.drawable.surfeit_unchecked)
-    private val surfeitCheckedDrawable = ContextCompat.getDrawable(context, R.drawable.surfeit_checked)
-    private val allowedUncheckedDrawable = ContextCompat.getDrawable(context, R.drawable.allowed_unchecked)
-    private val allowedCheckedDrawable = ContextCompat.getDrawable(context, R.drawable.allowed_checked)
+    private val surfeitUncheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_surfeit_unchecked)
+    private val surfeitCheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_surfeit_checked)
+    private val allowedUncheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_allowed_unchecked)
+    private val allowedCheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_allowed_checked)
 
     init {
         removeAllViews()

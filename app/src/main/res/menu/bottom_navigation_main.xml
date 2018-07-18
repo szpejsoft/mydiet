@@ -5,19 +5,19 @@
     <item
         android:id="@+id/action_nourishment"
         android:enabled="true"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/bottom_nav_settings_icom"
         android:title="@string/nourishment"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_measurements"
         android:enabled="true"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/bottom_nav_settings_icom"
         android:title="@string/measurements"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:enabled="true"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/bottom_nav_settings_icom"
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
 

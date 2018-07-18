@@ -19,11 +19,6 @@ class NourishmentFragment : MyDietFragment() {
         ViewModelProviders.of(this, viewModelFactory).get(NourishmentViewModel::class.java)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getAppComponent().inject(this)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.nourishments_layout, container, false)
     }
