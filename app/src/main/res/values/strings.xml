@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">MyDiet</string>
-    <string name="nourishment">Nourishment</string>
-    <string name="measurements">Measurements</string>
-    <string name="settings">settings</string>
+    <string name="bottom_nav_nourishment">Nourishment</string>
+    <string name="bottom_nav_measurements">Measurements</string>
+    <string name="bottom_nav_settings">Settings</string>
+
     <string name="nourishment_fruits">Fruits</string>
     <string name="nourishment_vegetables">Vegetables</string>
     <string name="nourishment_grain_products">Grain products</string>
@@ -10,4 +11,15 @@
     <string name="nourishment_meat">Meat, fish, eggs, legumes</string>
     <string name="nourishment_fat">Fat</string>
     <string name="nourishment_next_alarm">Set next meal alarm in %s</string>
+
+    <string name="settings_fruits">Fruit portions</string>
+    <string name="settings_vegetables">Vegetables portions</string>
+    <string name="settings_grain_products">Grain products portions</string>
+    <string name="settings_dairy">Dairy portions</string>
+    <string name="settings_meat">Meat, fish, eggs, legumes portions</string>
+    <string name="settings_fat">Fat portions</string>
+    <string name="settings_meals_interval">Interval between meals</string>
+    <string name="settings_save_changes">Save changes</string>
+
+
 </resources>

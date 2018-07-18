@@ -8,9 +8,27 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="NourishmentText">
+    <style name="LargeText">
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="NourishmentTitle" parent="LargeText">
+        <item name="android:layout_marginBottom">@dimen/margin_tiny</item>
+    </style>
+
+    <style name="NourishmentCounter">
+        <item name="android:layout_marginBottom">@dimen/margin_small</item>
+    </style>
+
+    <style name="SettingsTitle" parent="LargeText">
+        <item name="android:layout_marginBottom">@dimen/margin_tiny</item>
+    </style>
+
+    <style name="SettingsNumberEdit">
+        <item name="android:layout_width">192dp</item>
+        <item name="android:layout_height">@dimen/default_size</item>
+        <item name="android:layout_marginBottom">@dimen/margin_tiny</item>
     </style>
 
 </resources>

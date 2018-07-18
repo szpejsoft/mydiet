@@ -10,7 +10,7 @@
         android:padding="@dimen/margin_small">
 
         <android.support.v7.widget.AppCompatTextView
-            style="@style/NourishmentText"
+            style="@style/LargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_tiny"
@@ -23,7 +23,7 @@
             android:layout_marginBottom="@dimen/margin_small" />
 
         <android.support.v7.widget.AppCompatTextView
-            style="@style/NourishmentText"
+            style="@style/LargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_tiny"
@@ -37,7 +37,7 @@
 
 
         <android.support.v7.widget.AppCompatTextView
-            style="@style/NourishmentText"
+            style="@style/LargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_tiny"
@@ -50,7 +50,7 @@
             android:layout_marginBottom="@dimen/margin_small" />
 
         <android.support.v7.widget.AppCompatTextView
-            style="@style/NourishmentText"
+            style="@style/LargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_tiny"
@@ -63,7 +63,7 @@
             android:layout_marginBottom="@dimen/margin_small" />
 
         <android.support.v7.widget.AppCompatTextView
-            style="@style/NourishmentText"
+            style="@style/LargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_tiny"
@@ -76,7 +76,7 @@
             android:layout_marginBottom="@dimen/margin_small" />
 
         <android.support.v7.widget.AppCompatTextView
-            style="@style/NourishmentText"
+            style="@style/LargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_tiny"

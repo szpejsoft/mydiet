@@ -6,19 +6,19 @@
         android:id="@+id/action_nourishment"
         android:enabled="true"
         android:icon="@drawable/bottom_nav_settings_icom"
-        android:title="@string/nourishment"
+        android:title="@string/bottom_nav_nourishment"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_measurements"
         android:enabled="true"
         android:icon="@drawable/bottom_nav_settings_icom"
-        android:title="@string/measurements"
+        android:title="@string/bottom_nav_measurements"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
         android:enabled="true"
         android:icon="@drawable/bottom_nav_settings_icom"
-        android:title="@string/settings"
+        android:title="@string/bottom_nav_settings"
         app:showAsAction="ifRoom" />
 
 </menu>

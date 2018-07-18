@@ -2,7 +2,6 @@ package com.szpejsoft.mydiet.views.nourishment
 
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
-import kotlinx.android.synthetic.main.nourishments_layout.*
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.nourishment_layout.*
 
 class NourishmentFragment : MyDietFragment() {
 
@@ -20,7 +18,7 @@ class NourishmentFragment : MyDietFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.nourishments_layout, container, false)
+        return inflater.inflate(R.layout.nourishment_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

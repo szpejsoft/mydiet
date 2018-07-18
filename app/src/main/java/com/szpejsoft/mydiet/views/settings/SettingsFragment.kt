@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.toast
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
 import com.szpejsoft.mydiet.utils.SchedulersFacade
@@ -12,8 +11,8 @@ import kotlinx.android.synthetic.main.settings_layout.*
 import javax.inject.Inject
 
 class SettingsFragment : MyDietFragment() {
-    @Inject
-    lateinit var schedulersFacade: SchedulersFacade
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +25,20 @@ class SettingsFragment : MyDietFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        numberPicker.setRange(0, 10)
-        numberPicker.setValue(-1)
-        numberPicker.getValueObservable()
-                .subscribeOn(schedulersFacade.computation())
-                .observeOn(schedulersFacade.ui())
-                .subscribe { context?.toast("value = $it") }
+        setupValueEditsRanges()
+    }
+
+    private fun setupValueEditsRanges() {
+        fruitsPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        vegetablesPortionEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        grainPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        dairyPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        meatPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        fatPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+    }
+
+    companion object {
+        const val MAX_PORTIONS = 10
+        const val MIN_PORTIONS = 0
     }
 }

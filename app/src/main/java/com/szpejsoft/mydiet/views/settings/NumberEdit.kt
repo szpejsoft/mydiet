@@ -11,9 +11,9 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.number_picker_lay.view.*
 
 
-class NumberPicker(context: Context,
-                   attrs: AttributeSet? = null,
-                   @AttrRes defStyleAttr: Int = 0
+class NumberEdit(context: Context,
+                 attrs: AttributeSet? = null,
+                 @AttrRes defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
     constructor(context: Context) : this(context, null, 0)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)

@@ -7,18 +7,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/margin_medium">
 
         <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ilość porcji:" />
+            android:text="@string/settings_fruits" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberPicker
-            android:id="@+id/numberPicker"
-            android:layout_width="256dp"
-            android:layout_height="48dp" />
+        <com.szpejsoft.mydiet.views.settings.NumberEdit
+            android:id="@+id/fruitsPortionsEdit"
+            style="@style/SettingsNumberEdit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_vegetables" />
+
+        <com.szpejsoft.mydiet.views.settings.NumberEdit
+            android:id="@+id/vegetablesPortionEdit"
+            style="@style/SettingsNumberEdit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_grain_products" />
+
+        <com.szpejsoft.mydiet.views.settings.NumberEdit
+            android:id="@+id/grainPortionsEdit"
+            style="@style/SettingsNumberEdit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_dairy" />
+
+        <com.szpejsoft.mydiet.views.settings.NumberEdit
+            android:id="@+id/dairyPortionsEdit"
+            style="@style/SettingsNumberEdit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_meat" />
+
+        <com.szpejsoft.mydiet.views.settings.NumberEdit
+            android:id="@+id/meatPortionsEdit"
+            style="@style/SettingsNumberEdit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_fat" />
+
+        <com.szpejsoft.mydiet.views.settings.NumberEdit
+            android:id="@+id/fatPortionsEdit"
+            style="@style/SettingsNumberEdit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/SettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_meals_interval" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/settings_save_changes"/>
     </android.support.v7.widget.LinearLayoutCompat>
-
-
 </ScrollView>
