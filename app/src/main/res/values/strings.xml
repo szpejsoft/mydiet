@@ -20,6 +20,7 @@
     <string name="settings_fat">Fat portions</string>
     <string name="settings_meals_interval">Interval between meals</string>
     <string name="settings_save_changes">Save changes</string>
+    <string name="settings_interval_edit_title">Choose interval</string>
 
 
 </resources>

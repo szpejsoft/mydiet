@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.szpejsoft.mydiet.dagger.common.ViewModelFactory
 import com.szpejsoft.mydiet.dagger.common.ViewModelKey
 import com.szpejsoft.mydiet.views.nourishment.NourishmentViewModel
+import com.szpejsoft.mydiet.views.settings.SettingsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -18,4 +19,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NourishmentViewModel::class)
     internal abstract fun bindNourishmentViewModel(nourishmentViewModel: NourishmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    internal abstract fun bindSettingsViewModel(nourishmentViewModel: SettingsViewModel): ViewModel
 }

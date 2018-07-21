@@ -28,7 +28,6 @@ class NumberEdit(context: Context,
         View.inflate(context, R.layout.number_picker_lay, this)
         plusBtn.setOnClickListener { increment() }
         minusBtn.setOnClickListener { decrement() }
-        setValue(0)
     }
 
     fun getValueObservable(): Observable<Int> = valueRelay
@@ -41,6 +40,9 @@ class NumberEdit(context: Context,
     }
 
     fun setValue(value: Int) {
+        if (value == this.value) {
+            return
+        }
         this.value = clamp(minValue, maxValue, value)
         valueRelay.accept(this.value)
         numberTxt.text = "${this.value}"
@@ -50,7 +52,6 @@ class NumberEdit(context: Context,
         if (value > minValue) {
             val newValue = --value
             setValue(newValue)
-            valueRelay.accept(newValue)
         }
         enableDisableButtons()
     }
@@ -59,7 +60,6 @@ class NumberEdit(context: Context,
         if (value < maxValue) {
             val newValue = ++value
             setValue(newValue)
-            valueRelay.accept(newValue)
         }
         enableDisableButtons()
     }
@@ -67,7 +67,6 @@ class NumberEdit(context: Context,
     private fun enableDisableButtons() {
         minusBtn.isEnabled = value > minValue
         plusBtn.isEnabled = value < maxValue
-
     }
 
     private fun clamp(min: Int, max: Int, value: Int): Int = when {
@@ -75,6 +74,4 @@ class NumberEdit(context: Context,
         value > max -> max
         else -> value
     }
-
-
 }

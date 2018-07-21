@@ -1,24 +1,26 @@
 package com.szpejsoft.mydiet.views.settings
 
+import android.arch.lifecycle.LiveData
 import io.reactivex.Completable
 import io.reactivex.Observable
 
 interface ISettingsViewModel {
-    var fruitPortions: Observable<Int>
-    var vegetablesPortions: Observable<Int>
-    var grainPortions: Observable<Int>
-    var dairyPortions: Observable<Int>
-    var meatPortions: Observable<Int>
-    var fatPortions: Observable<Int>
-    var intervalBetweenMeals: Observable<Int>
+    val fruitPortionsData: LiveData<Int>
+    val vegetablePortionsData: LiveData<Int>
+    val grainPortionsData: LiveData<Int>
+    val dairyPortionsData: LiveData<Int>
+    val meatPortionsData: LiveData<Int>
+    val fatPortionsData: LiveData<Int>
+    val intervalBetweenMealsData: LiveData<Int>
+    val saveButtonEnabledData: LiveData<Boolean>
 
-    fun setFruitPortionsValue(fruitPortions: Observable<Int>)
-    fun setVegetablesPortionsValue(vegetablesPortions: Observable<Int>)
-    fun setGrainPortionsValue(grainPortions: Observable<Int>)
-    fun setDairyPortionsValue(dairyPortions: Observable<Int>)
-    fun setMeatPortionsValue(meatPortions: Observable<Int>)
-    fun setFatPortionsValue(fatPortions: Observable<Int>)
-    fun setintervalBetweenMealsValue(interval: Observable<Int>)
-    fun onSaveBtnClicked(clicked: Completable)
+    fun setAllowedFruitPortionsObservable(fruitPortions: Observable<Int>)
+    fun setAllowedVegetablePortionsObservable(vegetablesPortions: Observable<Int>)
+    fun setAllowedGrainPortionsObservable(grainPortions: Observable<Int>)
+    fun setAllowedDairyPortionsObservable(dairyPortions: Observable<Int>)
+    fun setAllowedMeatPortionsObservable(meatPortions: Observable<Int>)
+    fun setAllowedFatPortionsObservable(fatPortions: Observable<Int>)
+    fun setIntervalBetweenMealsObservable(interval: Observable<Int>)
+    fun onSaveBtnClicked(clicked: Observable<Any>)
 
 }

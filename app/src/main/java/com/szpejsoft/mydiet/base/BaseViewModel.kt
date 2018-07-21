@@ -14,7 +14,7 @@ import timber.log.Timber
 
 open class BaseViewModel(
         application: Application,
-        private val schedulersFacade: SchedulersFacade
+        protected val schedulersFacade: SchedulersFacade
 ) : AndroidViewModel(application) {
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
