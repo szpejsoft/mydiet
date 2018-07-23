@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.views.nourishment
+package com.szpejsoft.mydiet.screens.nourishment
 
 import android.widget.FrameLayout
 import android.content.Context
@@ -10,7 +10,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.get
+import com.jakewharton.rxrelay2.BehaviorRelay
 import com.szpejsoft.mydiet.R
+import com.szpejsoft.mydiet.domain.Portions
 import com.szpejsoft.mydiet.getPx
 import kotlinx.android.synthetic.main.portion_counter.view.*
 
@@ -27,28 +29,15 @@ constructor(context: Context,
     private val surfeitCheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_surfeit_checked)
     private val allowedUncheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_allowed_unchecked)
     private val allowedCheckedDrawable = ContextCompat.getDrawable(context, R.drawable.nourishment_allowed_checked)
+    private val eatenPortionsObservable: BehaviorRelay<Portions> = BehaviorRelay.create()
 
     init {
         removeAllViews()
         View.inflate(context, R.layout.portion_counter, this)
     }
 
-    interface OnCountChangedListener {
-        fun onCountChanged(eaten: Int, allowed: Int)
-    }
-
-    val onCountChangedListeners = mutableSetOf<OnCountChangedListener>()
-
     private var eaten: Int = 0
     private var allowed: Int = 0
-
-    fun addOnCountChangeListener(listener: OnCountChangedListener) {
-        onCountChangedListeners.add(listener)
-    }
-
-    fun removeOnCountChangedListener(listener: OnCountChangedListener) {
-        onCountChangedListeners.remove(listener)
-    }
 
     fun setPortions(eaten: Int, allowed: Int) {
         this.eaten = eaten
@@ -57,9 +46,9 @@ constructor(context: Context,
         addAllowed(eaten, allowed)
         if (eaten > allowed) {
             addSurfeit(eaten, allowed)
-        } else {
-            addNotCheckedSurfeitView()
         }
+        addNotCheckedSurfeitView()
+        eatenPortionsObservable.accept(Portions(eaten, allowed))
     }
 
     private fun addNotCheckedSurfeitView() {
@@ -95,7 +84,7 @@ constructor(context: Context,
             view.setImageDrawable(surfeitCheckedDrawable)
             view.scaleType = ImageView.ScaleType.CENTER
         }
-        addNotCheckedSurfeitView()
+
     }
 
     private fun createView(): AppCompatImageView {
@@ -109,8 +98,10 @@ constructor(context: Context,
         when (index) {
             eaten -> handleLastCheckedClicked()
             eaten + 1 -> handleFirstUncheckedClicked()
+            else -> {
+            } //dunuthin
         }
-        onCountChangedListeners.forEach { it.onCountChanged(eaten, allowed) }
+        eatenPortionsObservable.accept(Portions(eaten, allowed))
     }
 
     private fun handleLastCheckedClicked() {

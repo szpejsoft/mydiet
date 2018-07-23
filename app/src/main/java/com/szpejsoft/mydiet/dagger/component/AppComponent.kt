@@ -8,9 +8,9 @@ import com.szpejsoft.mydiet.dagger.module.AppModule
 import com.szpejsoft.mydiet.dagger.module.RepositoryModule
 import com.szpejsoft.mydiet.dagger.module.SchedulersModule
 import com.szpejsoft.mydiet.dagger.module.ViewModelModule
-import com.szpejsoft.mydiet.views.measurements.MeasurementsFragment
-import com.szpejsoft.mydiet.views.nourishment.NourishmentFragment
-import com.szpejsoft.mydiet.views.settings.SettingsFragment
+import com.szpejsoft.mydiet.screens.measurements.MeasurementsFragment
+import com.szpejsoft.mydiet.screens.nourishment.NourishmentFragment
+import com.szpejsoft.mydiet.screens.settings.SettingsFragment
 import dagger.Component
 import javax.inject.Singleton
 

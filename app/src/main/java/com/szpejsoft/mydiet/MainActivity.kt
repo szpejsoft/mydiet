@@ -1,9 +1,9 @@
 package com.szpejsoft.mydiet
 
 import android.os.Bundle
-import com.szpejsoft.mydiet.views.measurements.MeasurementsFragment
-import com.szpejsoft.mydiet.views.nourishment.NourishmentFragment
-import com.szpejsoft.mydiet.views.settings.SettingsFragment
+import com.szpejsoft.mydiet.screens.measurements.MeasurementsFragment
+import com.szpejsoft.mydiet.screens.nourishment.NourishmentFragment
+import com.szpejsoft.mydiet.screens.settings.SettingsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : MyDietActivity() {

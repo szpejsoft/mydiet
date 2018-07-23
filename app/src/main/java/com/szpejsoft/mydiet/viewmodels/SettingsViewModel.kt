@@ -1,10 +1,11 @@
-package com.szpejsoft.mydiet.views.settings
+package com.szpejsoft.mydiet.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.szpejsoft.mydiet.base.BaseViewModel
 import com.szpejsoft.mydiet.domain.Settings
 import com.szpejsoft.mydiet.utils.SchedulersFacade
+import com.szpejsoft.mydiet.repositories.ISettingsRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject

@@ -1,19 +1,18 @@
-package com.szpejsoft.mydiet.views.settings
+package com.szpejsoft.mydiet.repositories
 
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.szpejsoft.mydiet.domain.Settings
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.Single
 
 class MockSettingsRepository : ISettingsRepository {
-    var fruits = 5
-    var vegetables = 5
-    var grain = 3
-    var dairy = 4
-    var meat = 2
-    var fat = 1
-    var interval = 180
+    private var fruits = 5
+    private var vegetables = 5
+    private var grain = 3
+    private var dairy = 4
+    private var meat = 2
+    private var fat = 1
+    private var interval = 180
 
     private val settingsObservable: BehaviorRelay<Settings> = BehaviorRelay.create()
 
@@ -42,5 +41,4 @@ class MockSettingsRepository : ISettingsRepository {
                 interval = settings.intervalBetweenMeals
                 settingsObservable.accept(settings)
             }
-
 }

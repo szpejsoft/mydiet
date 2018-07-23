@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.views.settings
+package com.szpejsoft.mydiet.screens.settings
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -12,6 +12,9 @@ import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
+import com.szpejsoft.mydiet.formatInterval
+import com.szpejsoft.mydiet.viewmodels.ISettingsViewModel
+import com.szpejsoft.mydiet.viewmodels.SettingsViewModel
 import kotlinx.android.synthetic.main.settings_fragment.*
 
 class SettingsFragment : MyDietFragment() {
@@ -44,7 +47,7 @@ class SettingsFragment : MyDietFragment() {
 
     private fun setIntervalValue(interval: Int?) {
         interval ?: return
-        intervalTxt.text = formatInterval(interval)
+        intervalTxt.text = interval.formatInterval()
     }
 
     private fun safeSetValue(numberEdit: NumberEdit?, value: Int?) {
@@ -79,16 +82,15 @@ class SettingsFragment : MyDietFragment() {
     }
 
     private fun observeViewModel() {
-        val lifecycleOwner = this
         settingsViewModel.apply {
-            fruitPortionsData.observe(lifecycleOwner, Observer { safeSetValue(fruitPortionsEdit, it) })
-            vegetablePortionsData.observe(lifecycleOwner, Observer { safeSetValue(vegetablePortionEdit, it) })
-            grainPortionsData.observe(lifecycleOwner, Observer { safeSetValue(grainPortionsEdit, it) })
-            dairyPortionsData.observe(lifecycleOwner, Observer { safeSetValue(dairyPortionsEdit, it) })
-            meatPortionsData.observe(lifecycleOwner, Observer { safeSetValue(meatPortionsEdit, it) })
-            fatPortionsData.observe(lifecycleOwner, Observer { safeSetValue(fatPortionsEdit, it) })
-            intervalBetweenMealsData.observe(lifecycleOwner, Observer { setIntervalValue(it) })
-            saveButtonEnabledData.observe(lifecycleOwner, Observer { setSaveButtonEnabled(it) })
+            fruitPortionsData.observe(this@SettingsFragment, Observer { safeSetValue(fruitPortionsEdit, it) })
+            vegetablePortionsData.observe(this@SettingsFragment, Observer { safeSetValue(vegetablePortionEdit, it) })
+            grainPortionsData.observe(this@SettingsFragment, Observer { safeSetValue(grainPortionsEdit, it) })
+            dairyPortionsData.observe(this@SettingsFragment, Observer { safeSetValue(dairyPortionsEdit, it) })
+            meatPortionsData.observe(this@SettingsFragment, Observer { safeSetValue(meatPortionsEdit, it) })
+            fatPortionsData.observe(this@SettingsFragment, Observer { safeSetValue(fatPortionsEdit, it) })
+            intervalBetweenMealsData.observe(this@SettingsFragment, Observer { setIntervalValue(it) })
+            saveButtonEnabledData.observe(this@SettingsFragment, Observer { setSaveButtonEnabled(it) })
         }
     }
 
@@ -114,14 +116,13 @@ class SettingsFragment : MyDietFragment() {
         intervalPicker.apply {
             minValue = 0
             maxValue = intervals.size - 1
-            displayedValues = intervals.map { formatInterval(it) }.toTypedArray()
-//            setOnValueChangedListener { _, _, newVal -> intervalRelay.accept(intervals[newVal]) }
+            displayedValues = intervals.map { it.formatInterval() }.toTypedArray()
             wrapSelectorWheel = false
         }
         val okButton: View = view.findViewById(R.id.okButton)
         okButton.setOnClickListener {
             intervalRelay.accept(intervals[intervalPicker.value])
-            intervalTxt.text = formatInterval(intervals[intervalPicker.value])
+            intervalTxt.text = intervals[intervalPicker.value].formatInterval()
             dialog.dismiss()
         }
         val cancelButton: View = view.findViewById(R.id.cancelButton)
@@ -129,11 +130,6 @@ class SettingsFragment : MyDietFragment() {
         dialog.show()
     }
 
-    private fun formatInterval(value: Int): String {
-        val hours = "${value / 60}"
-        val minutes = "${value % 60}".padStart(2, '0')
-        return "$hours:$minutes"
-    }
 
     companion object {
         const val MAX_PORTIONS = 10

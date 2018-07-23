@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_fruits" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberEdit
+        <com.szpejsoft.mydiet.screens.settings.NumberEdit
             android:id="@+id/fruitPortionsEdit"
             style="@style/SettingsNumberEdit" />
 
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_vegetables" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberEdit
+        <com.szpejsoft.mydiet.screens.settings.NumberEdit
             android:id="@+id/vegetablePortionEdit"
             style="@style/SettingsNumberEdit" />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_grain_products" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberEdit
+        <com.szpejsoft.mydiet.screens.settings.NumberEdit
             android:id="@+id/grainPortionsEdit"
             style="@style/SettingsNumberEdit" />
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_dairy" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberEdit
+        <com.szpejsoft.mydiet.screens.settings.NumberEdit
             android:id="@+id/dairyPortionsEdit"
             style="@style/SettingsNumberEdit" />
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_meat" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberEdit
+        <com.szpejsoft.mydiet.screens.settings.NumberEdit
             android:id="@+id/meatPortionsEdit"
             style="@style/SettingsNumberEdit" />
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings_fat" />
 
-        <com.szpejsoft.mydiet.views.settings.NumberEdit
+        <com.szpejsoft.mydiet.screens.settings.NumberEdit
             android:id="@+id/fatPortionsEdit"
             style="@style/SettingsNumberEdit" />
 

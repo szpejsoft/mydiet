@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.views.measurements
+package com.szpejsoft.mydiet.screens.measurements
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

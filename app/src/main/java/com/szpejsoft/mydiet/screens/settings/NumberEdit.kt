@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.views.settings
+package com.szpejsoft.mydiet.screens.settings
 
 import android.content.Context
 import android.support.annotation.AttrRes

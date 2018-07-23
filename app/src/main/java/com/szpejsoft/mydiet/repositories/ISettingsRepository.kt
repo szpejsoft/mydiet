@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.views.settings
+package com.szpejsoft.mydiet.repositories
 
 import com.szpejsoft.mydiet.domain.Settings
 import io.reactivex.Completable

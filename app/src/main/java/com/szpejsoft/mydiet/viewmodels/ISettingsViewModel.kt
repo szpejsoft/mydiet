@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.views.settings
+package com.szpejsoft.mydiet.viewmodels
 
 import android.arch.lifecycle.LiveData
 import io.reactivex.Completable
