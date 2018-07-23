@@ -14,6 +14,7 @@ buildscript {
     ext.timberVersion = '4.7.0'
     ext.daggerAndroidVersion = '2.16'
     ext.rxRelayVersion = '2.0.0'
+    ext.rxBindingVersion = '2.1.1'
     repositories {
         google()
         jcenter()

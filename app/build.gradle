@@ -53,7 +53,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlin"
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion"
-
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxBindingVersion"
     //Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"

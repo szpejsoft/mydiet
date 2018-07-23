@@ -50,7 +50,7 @@ class NumberEdit(context: Context,
 
     private fun decrement() {
         if (value > minValue) {
-            val newValue = --value
+            val newValue = value -1
             setValue(newValue)
         }
         enableDisableButtons()
@@ -58,7 +58,7 @@ class NumberEdit(context: Context,
 
     private fun increment() {
         if (value < maxValue) {
-            val newValue = ++value
+            val newValue = value +1
             setValue(newValue)
         }
         enableDisableButtons()

@@ -5,6 +5,7 @@ import com.szpejsoft.mydiet.MyDietActivity
 import com.szpejsoft.mydiet.MyDietApplication
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.dagger.module.AppModule
+import com.szpejsoft.mydiet.dagger.module.RepositoryModule
 import com.szpejsoft.mydiet.dagger.module.SchedulersModule
 import com.szpejsoft.mydiet.dagger.module.ViewModelModule
 import com.szpejsoft.mydiet.views.measurements.MeasurementsFragment
@@ -16,6 +17,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     (ViewModelModule::class),
+    (RepositoryModule::class),
     (AppModule::class),
     (SchedulersModule::class)])
 interface AppComponent {

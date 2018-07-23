@@ -3,6 +3,7 @@ package com.szpejsoft.mydiet.views.settings
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.szpejsoft.mydiet.base.BaseViewModel
+import com.szpejsoft.mydiet.domain.Settings
 import com.szpejsoft.mydiet.utils.SchedulersFacade
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
@@ -12,7 +13,8 @@ class SettingsViewModel
 @Inject
 constructor(
         application: Application,
-        schedulersFacade: SchedulersFacade
+        schedulersFacade: SchedulersFacade,
+        private val settingsRepository: ISettingsRepository
 ) : BaseViewModel(application, schedulersFacade), ISettingsViewModel {
     override val fruitPortionsData = MutableLiveData<Int>()
     override val vegetablePortionsData = MutableLiveData<Int>()
@@ -33,20 +35,29 @@ constructor(
 
     init {
         saveButtonEnabledData.postValue(false)
+        settingsRepository.getSettings.subscribeOnCompObserveOnUIBy {
+            setAllowedFruitPortions(it.allowedFruitPortions)
+            setAllowedVegetablePortions(it.allowedVegetablePortions)
+            setAllowedGrainPortions(it.allowedGrainPortions)
+            setAllowedDairyPortions(it.allowedDairyPortions)
+            setAllowedMeatPortions(it.allowedMeatPortions)
+            setAllowedFatPortions(it.allowedFatPortions)
+            setIntervalBetweenMeals(it.intervalBetweenMeals)
+        }
     }
 
     override fun setAllowedFruitPortionsObservable(fruitPortions: Observable<Int>) {
-        fruitPortions.subscribeBy { setAllowedFruitPortions(it) }
+        fruitPortions.distinctUntilChanged().subscribeBy { setAllowedFruitPortions(it) }
     }
 
     private fun setAllowedFruitPortions(portions: Int) {
         allowedFruitPortions = portions
-        fruitPortionsData.postValue(allowedDairyPortions)
+        fruitPortionsData.postValue(portions)
         saveButtonEnabledData.postValue(true)
     }
 
     override fun setAllowedVegetablePortionsObservable(vegetablePortions: Observable<Int>) {
-        vegetablePortions.subscribeBy { setAllowedVegetablePortions(it) }
+        vegetablePortions.distinctUntilChanged().subscribeBy { setAllowedVegetablePortions(it) }
     }
 
     private fun setAllowedVegetablePortions(portions: Int) {
@@ -56,7 +67,7 @@ constructor(
     }
 
     override fun setAllowedGrainPortionsObservable(grainPortions: Observable<Int>) {
-        grainPortions.subscribeBy { setAllowedGrainPortions(it) }
+        grainPortions.distinctUntilChanged().subscribeBy { setAllowedGrainPortions(it) }
     }
 
     private fun setAllowedGrainPortions(portions: Int) {
@@ -66,7 +77,7 @@ constructor(
     }
 
     override fun setAllowedDairyPortionsObservable(dairyPortions: Observable<Int>) {
-        dairyPortions.subscribeBy { setAllowedDairyPortions(it) }
+        dairyPortions.distinctUntilChanged().subscribeBy { setAllowedDairyPortions(it) }
     }
 
     private fun setAllowedDairyPortions(portions: Int) {
@@ -76,7 +87,7 @@ constructor(
     }
 
     override fun setAllowedMeatPortionsObservable(meatPortions: Observable<Int>) {
-        meatPortions.subscribeBy { setAllowedMeatPortions(it) }
+        meatPortions.distinctUntilChanged().subscribeBy { setAllowedMeatPortions(it) }
     }
 
     private fun setAllowedMeatPortions(portions: Int) {
@@ -86,7 +97,7 @@ constructor(
     }
 
     override fun setAllowedFatPortionsObservable(fatPortions: Observable<Int>) {
-        fatPortions.subscribeBy { setAllowedFatPortions(it) }
+        fatPortions.distinctUntilChanged().subscribeBy { setAllowedFatPortions(it) }
     }
 
     private fun setAllowedFatPortions(portions: Int) {
@@ -96,7 +107,7 @@ constructor(
     }
 
     override fun setIntervalBetweenMealsObservable(interval: Observable<Int>) {
-        interval.subscribe { setIntervalBetweenMeals(it) }
+        interval.distinctUntilChanged().subscribe { setIntervalBetweenMeals(it) }
     }
 
     private fun setIntervalBetweenMeals(interval: Int) {
@@ -106,8 +117,18 @@ constructor(
     }
 
     override fun onSaveBtnClicked(clicked: Observable<Any>) {
-        //write to database
-        saveButtonEnabledData.postValue(false)
+        clicked.subscribeBy {
+            settingsRepository.saveSettings(Settings(0,
+                    allowedFruitPortions = allowedFruitPortions,
+                    allowedVegetablePortions = allowedVegetablePortions,
+                    allowedGrainPortions = allowedGrainPortions,
+                    allowedDairyPortions = allowedDairyPortions,
+                    allowedMeatPortions = allowedMeatPortions,
+                    allowedFatPortions = allowedFatPortions,
+                    intervalBetweenMeals = intervalBetweenMeals
+            ))
+            saveButtonEnabledData.postValue(false)
+        }
     }
 
 }

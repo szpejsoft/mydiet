@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
+import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
@@ -38,19 +39,7 @@ class SettingsFragment : MyDietFragment() {
         setupPortionEdits()
         setupIntervalEdit()
         observeViewModel()
-    }
-
-    private fun observeViewModel() {
-        val lifecycleOwner = this
-        settingsViewModel.apply {
-            fruitPortionsData.observe(lifecycleOwner, Observer { safeSetValue(fruitsPortionsEdit, it) })
-            vegetablePortionsData.observe(lifecycleOwner, Observer { safeSetValue(vegetablesPortionEdit, it) })
-            grainPortionsData.observe(lifecycleOwner, Observer { safeSetValue(grainPortionsEdit, it) })
-            dairyPortionsData.observe(lifecycleOwner, Observer { safeSetValue(dairyPortionsEdit, it) })
-            meatPortionsData.observe(lifecycleOwner, Observer { safeSetValue(meatPortionsEdit, it) })
-            fatPortionsData.observe(lifecycleOwner, Observer { safeSetValue(fatPortionsEdit, it) })
-            intervalBetweenMealsData.observe(lifecycleOwner, Observer { setIntervalValue(it) })
-        }
+        settingsViewModel.onSaveBtnClicked(RxView.clicks(saveButton))
     }
 
     private fun setIntervalValue(interval: Int?) {
@@ -69,8 +58,8 @@ class SettingsFragment : MyDietFragment() {
     }
 
     private fun setupValueEditsRanges() {
-        fruitsPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
-        vegetablesPortionEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        fruitPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
+        vegetablePortionEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
         grainPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
         dairyPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
         meatPortionsEdit.setRange(MIN_PORTIONS, MAX_PORTIONS)
@@ -79,13 +68,32 @@ class SettingsFragment : MyDietFragment() {
 
     private fun setupValueEditsListeners() {
         settingsViewModel.apply {
-            setAllowedFruitPortionsObservable(fruitsPortionsEdit.getValueObservable())
-            setAllowedVegetablePortionsObservable(vegetablesPortionEdit.getValueObservable())
+            setAllowedFruitPortionsObservable(fruitPortionsEdit.getValueObservable())
+            setAllowedVegetablePortionsObservable(vegetablePortionEdit.getValueObservable())
             setAllowedGrainPortionsObservable(grainPortionsEdit.getValueObservable())
             setAllowedDairyPortionsObservable(dairyPortionsEdit.getValueObservable())
             setAllowedMeatPortionsObservable(meatPortionsEdit.getValueObservable())
             setAllowedFatPortionsObservable(fatPortionsEdit.getValueObservable())
+            setIntervalBetweenMealsObservable(intervalRelay)
         }
+    }
+
+    private fun observeViewModel() {
+        val lifecycleOwner = this
+        settingsViewModel.apply {
+            fruitPortionsData.observe(lifecycleOwner, Observer { safeSetValue(fruitPortionsEdit, it) })
+            vegetablePortionsData.observe(lifecycleOwner, Observer { safeSetValue(vegetablePortionEdit, it) })
+            grainPortionsData.observe(lifecycleOwner, Observer { safeSetValue(grainPortionsEdit, it) })
+            dairyPortionsData.observe(lifecycleOwner, Observer { safeSetValue(dairyPortionsEdit, it) })
+            meatPortionsData.observe(lifecycleOwner, Observer { safeSetValue(meatPortionsEdit, it) })
+            fatPortionsData.observe(lifecycleOwner, Observer { safeSetValue(fatPortionsEdit, it) })
+            intervalBetweenMealsData.observe(lifecycleOwner, Observer { setIntervalValue(it) })
+            saveButtonEnabledData.observe(lifecycleOwner, Observer { setSaveButtonEnabled(it) })
+        }
+    }
+
+    private fun setSaveButtonEnabled(enabled: Boolean?) {
+        saveButton.isEnabled = enabled ?: true
     }
 
     private fun setupIntervalEdit() {
@@ -108,6 +116,7 @@ class SettingsFragment : MyDietFragment() {
             maxValue = intervals.size - 1
             displayedValues = intervals.map { formatInterval(it) }.toTypedArray()
 //            setOnValueChangedListener { _, _, newVal -> intervalRelay.accept(intervals[newVal]) }
+            wrapSelectorWheel = false
         }
         val okButton: View = view.findViewById(R.id.okButton)
         okButton.setOnClickListener {

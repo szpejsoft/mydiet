@@ -15,7 +15,7 @@ interface ISettingsViewModel {
     val saveButtonEnabledData: LiveData<Boolean>
 
     fun setAllowedFruitPortionsObservable(fruitPortions: Observable<Int>)
-    fun setAllowedVegetablePortionsObservable(vegetablesPortions: Observable<Int>)
+    fun setAllowedVegetablePortionsObservable(vegetablePortions: Observable<Int>)
     fun setAllowedGrainPortionsObservable(grainPortions: Observable<Int>)
     fun setAllowedDairyPortionsObservable(dairyPortions: Observable<Int>)
     fun setAllowedMeatPortionsObservable(meatPortions: Observable<Int>)
