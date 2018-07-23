@@ -22,6 +22,4 @@ interface INourishmentViewModel {
     fun setMeatPortionsObservable(observable: Observable<Portions>)
     fun setFatPortionsObservable(observable: Observable<Portions>)
     fun setNextAlarm()
-
-
 }
