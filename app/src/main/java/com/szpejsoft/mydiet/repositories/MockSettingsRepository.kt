@@ -1,9 +1,9 @@
 package com.szpejsoft.mydiet.repositories
 
-import com.jakewharton.rxrelay2.BehaviorRelay
 import com.szpejsoft.mydiet.domain.Settings
 import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Single
+import org.joda.time.LocalDate
 
 class MockSettingsRepository : ISettingsRepository {
     private var fruits = 5
@@ -14,31 +14,25 @@ class MockSettingsRepository : ISettingsRepository {
     private var fat = 1
     private var interval = 180
 
-    private val settingsObservable: BehaviorRelay<Settings> = BehaviorRelay.create()
-
-    init {
-        settingsObservable.accept(Settings(id = 0,
-                allowedFruitPortions = fruits,
-                allowedVegetablePortions = vegetables,
-                allowedGrainPortions = grain,
-                allowedDairyPortions = dairy,
-                allowedMeatPortions = meat,
-                allowedFatPortions = fat,
-                intervalBetweenMeals = interval))
-    }
-
-    override val getSettings: Observable<Settings>
-        get() = settingsObservable
+    override fun getSettingsForDate(date: LocalDate): Single<Settings> = Single.just(
+            Settings(date = date,
+                    fruitPortionsAllowed = fruits,
+                    vegetablePortionsAllowed = vegetables,
+                    grainPortionsAllowed = grain,
+                    dairyPortionsAllowed = dairy,
+                    meatPortionsAllowed = meat,
+                    fatPortionsAllowed = fat,
+                    intervalBetweenMeals = interval)
+    )
 
     override fun saveSettings(settings: Settings): Completable =
             Completable.fromAction {
-                fruits = settings.allowedFruitPortions
-                vegetables = settings.allowedVegetablePortions
-                grain = settings.allowedGrainPortions
-                dairy = settings.allowedDairyPortions
-                meat = settings.allowedMeatPortions
-                fat = settings.allowedFatPortions
+                fruits = settings.fruitPortionsAllowed
+                vegetables = settings.vegetablePortionsAllowed
+                grain = settings.grainPortionsAllowed
+                dairy = settings.dairyPortionsAllowed
+                meat = settings.meatPortionsAllowed
+                fat = settings.fatPortionsAllowed
                 interval = settings.intervalBetweenMeals
-                settingsObservable.accept(settings)
             }
 }

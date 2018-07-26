@@ -2,6 +2,7 @@ package com.szpejsoft.mydiet
 
 import com.szpejsoft.mydiet.utils.SchedulersFacade
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -73,5 +74,19 @@ fun Completable.debugToLogcat(id: String) = this
 fun Completable.debugToConsole(id: String) = this
         .doOnSubscribe { println("[$id] onSubscribe => $it") }
         .doOnComplete { println("[$id] onComplete") }
+        .doOnError { println("[$id] onError => $it") }
+        .doOnDispose { println("[$id] onDispose") }
+
+fun <T> Maybe<T>.debugToLogcat(id: String) = this
+        .doOnSubscribe { Timber.d("[$id] onSubscribe => $it") }
+        .doOnComplete { Timber.d("[$id] onComplete") }
+        .doOnSuccess { Timber.d("[$id] onSuccess => $it") }
+        .doOnError { Timber.d("[$id] onError => $it") }
+        .doOnDispose { Timber.d("[$id] onDispose") }
+
+fun <T> Maybe<T>.debugToConsole(id: String) = this
+        .doOnSubscribe { println("[$id] onSubscribe => $it") }
+        .doOnComplete { println("[$id] onComplete") }
+        .doOnSuccess{println("[$id] onSuccess")}
         .doOnError { println("[$id] onError => $it") }
         .doOnDispose { println("[$id] onDispose") }

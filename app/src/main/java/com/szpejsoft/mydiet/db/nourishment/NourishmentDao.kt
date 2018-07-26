@@ -6,7 +6,7 @@ import io.reactivex.Maybe
 
 @Dao
 interface NourishmentDao {
-    @Insert(onConflict = OnConflictStrategy.FAIL)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(nourishmentEntity: NourishmentEntity)
 
     @Query("DELETE FROM nourishment_table")

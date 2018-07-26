@@ -8,6 +8,7 @@ import com.szpejsoft.mydiet.utils.SchedulersFacade
 import com.szpejsoft.mydiet.repositories.ISettingsRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
+import org.joda.time.LocalDate
 import javax.inject.Inject
 
 class SettingsViewModel
@@ -36,13 +37,13 @@ constructor(
 
     init {
         saveButtonEnabledData.postValue(false)
-        settingsRepository.getSettings.subscribeOnCompObserveOnUIBy {
-            setAllowedFruitPortions(it.allowedFruitPortions)
-            setAllowedVegetablePortions(it.allowedVegetablePortions)
-            setAllowedGrainPortions(it.allowedGrainPortions)
-            setAllowedDairyPortions(it.allowedDairyPortions)
-            setAllowedMeatPortions(it.allowedMeatPortions)
-            setAllowedFatPortions(it.allowedFatPortions)
+        settingsRepository.getSettingsForDate(LocalDate.now()).subscribeOnCompObserveOnUIBy {
+            setAllowedFruitPortions(it.fruitPortionsAllowed)
+            setAllowedVegetablePortions(it.vegetablePortionsAllowed)
+            setAllowedGrainPortions(it.grainPortionsAllowed)
+            setAllowedDairyPortions(it.dairyPortionsAllowed)
+            setAllowedMeatPortions(it.meatPortionsAllowed)
+            setAllowedFatPortions(it.fatPortionsAllowed)
             setIntervalBetweenMeals(it.intervalBetweenMeals)
         }
     }
@@ -119,13 +120,14 @@ constructor(
 
     override fun onSaveBtnClicked(clicked: Observable<Any>) {
         clicked.subscribeBy {
-            settingsRepository.saveSettings(Settings(0,
-                    allowedFruitPortions = allowedFruitPortions,
-                    allowedVegetablePortions = allowedVegetablePortions,
-                    allowedGrainPortions = allowedGrainPortions,
-                    allowedDairyPortions = allowedDairyPortions,
-                    allowedMeatPortions = allowedMeatPortions,
-                    allowedFatPortions = allowedFatPortions,
+            settingsRepository.saveSettings(Settings(
+                    date = LocalDate.now(),
+                    fruitPortionsAllowed = allowedFruitPortions,
+                    vegetablePortionsAllowed = allowedVegetablePortions,
+                    grainPortionsAllowed = allowedGrainPortions,
+                    dairyPortionsAllowed = allowedDairyPortions,
+                    meatPortionsAllowed = allowedMeatPortions,
+                    fatPortionsAllowed = allowedFatPortions,
                     intervalBetweenMeals = intervalBetweenMeals
             ))
             saveButtonEnabledData.postValue(false)

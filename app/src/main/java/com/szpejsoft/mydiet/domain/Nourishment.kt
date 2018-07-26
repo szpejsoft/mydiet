@@ -3,7 +3,6 @@ package com.szpejsoft.mydiet.domain
 import org.joda.time.LocalDate
 
 data class Nourishment(
-        val id: Int?,
         val fruitsConsumed: Int = 0,
         val fruitsMax: Int = 0,
         val vegetablesConsumed: Int = 0,
