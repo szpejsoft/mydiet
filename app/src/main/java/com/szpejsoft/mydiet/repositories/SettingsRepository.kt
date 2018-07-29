@@ -19,7 +19,7 @@ constructor(private val settingsDao: SettingsDao) : ISettingsRepository {
                     .toSingle(DEFAULT_SETTINGS)
 
     override fun saveSettings(settings: Settings): Completable =
-            Completable.fromAction { settingsDao.insert(settings.toEntity()) }
+            Completable.fromAction { settingsDao.insertOrUpdate(settings.toEntity()) }
 
     companion object {
         private val DEFAULT_SETTINGS = Settings()

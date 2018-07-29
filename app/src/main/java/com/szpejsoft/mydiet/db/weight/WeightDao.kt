@@ -8,22 +8,18 @@ import io.reactivex.Single
 
 @Dao
 interface WeightDao {
-    @Insert(onConflict = OnConflictStrategy.FAIL)
-    fun insert(WeightEntity: WeightEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertOrUpdate(weightEntity: WeightEntity)
 
     @Query("DELETE FROM weight_table")
     fun deleteAll()
 
+    @Delete
+    fun delete(weightEntity: WeightEntity)
+
     @Query("SELECT * from weight_table ORDER BY date ASC")
     fun selectAll(): Single<List<WeightEntity>>
 
-    @Query("SELECT * FROM weight_table WHERE date = :date")
-    fun selectByDate(date: String): Maybe<WeightEntity>
-
-    @Query("SELECT * FROM weight_table WHERE date < :date ORDER BY date LIMIT 1")
-    fun findLastWeightForDate(date: String): Single<WeightEntity>
-
-    @Update
-    fun update(weightEntity: WeightEntity)
-
+    @Query("SELECT * FROM weight_table WHERE date <= :date ORDER BY date LIMIT 1")
+    fun getWeightForDate(date: String): Maybe<WeightEntity>
 }

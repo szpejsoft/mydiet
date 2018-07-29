@@ -7,12 +7,8 @@ import org.joda.time.LocalDate
 
 @Dao
 interface SettingsDao {
-
-    @Query("SELECT * FROM settings_table WHERE date <= :date ORDER BY date DESC LIMIT 1 ")
-    fun getSettingsForDate(date: String): Maybe<SettingsEntity>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(settings: SettingsEntity)
+    fun insertOrUpdate(settings: SettingsEntity)
 
     @Query("DELETE FROM settings_table")
     fun deleteAll()
@@ -20,4 +16,6 @@ interface SettingsDao {
     @Delete
     fun delete(settings: SettingsEntity)
 
+    @Query("SELECT * FROM settings_table WHERE date <= :date ORDER BY date DESC LIMIT 1")
+    fun getSettingsForDate(date: String): Maybe<SettingsEntity>
 }
