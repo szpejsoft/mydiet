@@ -8,7 +8,7 @@ fun Nourishment.toEntity(): NourishmentEntity = NourishmentEntity(
         fruitsConsumed = this.fruitsConsumed,
         vegetablesConsumed = this.vegetablesConsumed,
         grainConsumed = this.grainConsumed,
-        milkConsumed = this.milkConsumed,
+        dairyConsumed = this.dairyConsumed,
         meatConsumed = this.meatConsumed,
         fatConsumed = this.fatConsumed)
 
@@ -19,7 +19,7 @@ fun NourishmentEntity.toDomain() = Nourishment(
         fruitsConsumed = this.fruitsConsumed,
         vegetablesConsumed = this.vegetablesConsumed,
         grainConsumed = this.grainConsumed,
-        milkConsumed = this.milkConsumed,
+        dairyConsumed = this.dairyConsumed,
         meatConsumed = this.meatConsumed,
         fatConsumed = this.fatConsumed)
 

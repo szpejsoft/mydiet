@@ -5,7 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import org.joda.time.LocalDate
 
-class MockSettingsRepository : ISettingsRepository {
+class MockSettingsRepository : SettingsRepository {
     private var fruits = 5
     private var vegetables = 5
     private var grain = 3

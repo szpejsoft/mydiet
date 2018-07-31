@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2ecc574b8ad780cea2d041d0884be973",
+    "identityHash": "9bfffc25b55bbea8873b1663c3307a48",
     "entities": [
       {
         "tableName": "nourishment_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `fruitsConsumed` INTEGER NOT NULL, `vegetablesConsumed` INTEGER NOT NULL, `grainConsumed` INTEGER NOT NULL, `milkConsumed` INTEGER NOT NULL, `meatConsumed` INTEGER NOT NULL, `fatConsumed` INTEGER NOT NULL, PRIMARY KEY(`date`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `fruitsConsumed` INTEGER NOT NULL, `vegetablesConsumed` INTEGER NOT NULL, `grainConsumed` INTEGER NOT NULL, `dairyConsumed` INTEGER NOT NULL, `meatConsumed` INTEGER NOT NULL, `fatConsumed` INTEGER NOT NULL, PRIMARY KEY(`date`))",
         "fields": [
           {
             "fieldPath": "date",
@@ -33,8 +33,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "milkConsumed",
-            "columnName": "milkConsumed",
+            "fieldPath": "dairyConsumed",
+            "columnName": "dairyConsumed",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -177,7 +177,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2ecc574b8ad780cea2d041d0884be973\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9bfffc25b55bbea8873b1663c3307a48\")"
     ]
   }
 }

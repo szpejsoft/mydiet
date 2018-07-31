@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.szpejsoft.mydiet.base.BaseViewModel
 import com.szpejsoft.mydiet.domain.Settings
 import com.szpejsoft.mydiet.utils.SchedulersFacade
-import com.szpejsoft.mydiet.repositories.ISettingsRepository
+import com.szpejsoft.mydiet.repositories.SettingsRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import org.joda.time.LocalDate
@@ -16,7 +16,7 @@ class SettingsViewModel
 constructor(
         application: Application,
         schedulersFacade: SchedulersFacade,
-        private val settingsRepository: ISettingsRepository
+        private val settingsRepository: SettingsRepository
 ) : BaseViewModel(application, schedulersFacade), ISettingsViewModel {
     override val fruitPortionsData = MutableLiveData<Int>()
     override val vegetablePortionsData = MutableLiveData<Int>()

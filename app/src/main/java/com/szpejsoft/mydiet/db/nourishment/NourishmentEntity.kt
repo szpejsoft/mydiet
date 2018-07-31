@@ -11,6 +11,6 @@ data class NourishmentEntity(
         val fruitsConsumed: Int = 0,
         val vegetablesConsumed: Int = 0,
         val grainConsumed: Int = 0,
-        val milkConsumed: Int = 0,
+        val dairyConsumed: Int = 0,
         val meatConsumed: Int = 0,
         val fatConsumed: Int = 0)

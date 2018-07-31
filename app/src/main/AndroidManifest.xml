@@ -6,8 +6,10 @@ since SD card is mounted after device is booted, needed for restoring calendar a
     package="com.szpejsoft.mydiet"
     android:installLocation="internalOnly">
 
-    <application
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
+    <application
         android:name=".MyDietApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +24,18 @@ since SD card is mounted after device is booted, needed for restoring calendar a
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- CALENDAR ALERTS -->
+        <receiver
+            android:name=".calendar.alarms.CalendarAlarmReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!--for htc -->
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

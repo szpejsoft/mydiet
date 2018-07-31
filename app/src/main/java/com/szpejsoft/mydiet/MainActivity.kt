@@ -14,7 +14,6 @@ class MainActivity : MyDietActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupNavigation()
-
     }
 
     private fun setupNavigation() {

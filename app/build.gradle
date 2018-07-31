@@ -64,7 +64,6 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
@@ -80,7 +79,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-core-utils'
     })
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
-    // Mockito-Kotlin
+
+        // Mockito-Kotlin
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"
         exclude group: 'com.android.support', module: 'support-annotations'
     }

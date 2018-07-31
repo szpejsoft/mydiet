@@ -2,22 +2,24 @@ package com.szpejsoft.mydiet.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.szpejsoft.mydiet.alarms.AlarmManager
 import com.szpejsoft.mydiet.base.BaseViewModel
 import com.szpejsoft.mydiet.domain.MealAlarm
 import com.szpejsoft.mydiet.domain.Portions
+import com.szpejsoft.mydiet.repositories.NourishmentRepository
+import com.szpejsoft.mydiet.repositories.SettingsRepository
 import com.szpejsoft.mydiet.utils.SchedulersFacade
 import io.reactivex.Observable
 import javax.inject.Inject
-import com.szpejsoft.mydiet.repositories.ISettingsRepository
-import com.szpejsoft.mydiet.repositories.INourishmentRepository
 
 class NourishmentViewModel
 @Inject
 constructor(
         application: Application,
         schedulersFacade: SchedulersFacade,
-        private val settingsRepository: ISettingsRepository,
-        private val nourishmentRepository: INourishmentRepository
+        private val settingsRepository: SettingsRepository,
+        private val nourishmentRepository: NourishmentRepository,
+        private val alarmManager: AlarmManager
 ) : BaseViewModel(application, schedulersFacade), INourishmentViewModel {
     override val fruitPortionsData = MutableLiveData<Portions>()
     override val vegetablePortionsData = MutableLiveData<Portions>()
@@ -65,5 +67,35 @@ constructor(
     override fun setNextAlarm() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+
+    override fun saveEatenFruitPortions(portions: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun saveEatenVegetablePortions(portions: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun saveEatenGrainPortions(portions: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun saveEatenDairyPortions(portions: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun saveEatenMeatPortions(portions: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun saveEatenFatPortions(portions: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setNextMealAlarm(minutes: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 
 }
