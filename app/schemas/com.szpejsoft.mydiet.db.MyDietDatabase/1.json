@@ -2,18 +2,12 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7f934d506107665333a7e8e22facf97e",
+    "identityHash": "9bfffc25b55bbea8873b1663c3307a48",
     "entities": [
       {
         "tableName": "nourishment_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT NOT NULL, `fruitsConsumed` INTEGER NOT NULL, `fruitsMax` INTEGER NOT NULL, `vegetablesConsumed` INTEGER NOT NULL, `vegetablesMax` INTEGER NOT NULL, `grainConsumed` INTEGER NOT NULL, `grainMax` INTEGER NOT NULL, `milkConsumed` INTEGER NOT NULL, `milkMax` INTEGER NOT NULL, `meatConsumed` INTEGER NOT NULL, `meatMax` INTEGER NOT NULL, `fatConsumed` INTEGER NOT NULL, `fatMax` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `fruitsConsumed` INTEGER NOT NULL, `vegetablesConsumed` INTEGER NOT NULL, `grainConsumed` INTEGER NOT NULL, `dairyConsumed` INTEGER NOT NULL, `meatConsumed` INTEGER NOT NULL, `fatConsumed` INTEGER NOT NULL, PRIMARY KEY(`date`))",
         "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
           {
             "fieldPath": "date",
             "columnName": "date",
@@ -27,20 +21,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "fruitsMax",
-            "columnName": "fruitsMax",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
             "fieldPath": "vegetablesConsumed",
             "columnName": "vegetablesConsumed",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "vegetablesMax",
-            "columnName": "vegetablesMax",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -51,20 +33,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "grainMax",
-            "columnName": "grainMax",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "milkConsumed",
-            "columnName": "milkConsumed",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "milkMax",
-            "columnName": "milkMax",
+            "fieldPath": "dairyConsumed",
+            "columnName": "dairyConsumed",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -75,43 +45,25 @@
             "notNull": true
           },
           {
-            "fieldPath": "meatMax",
-            "columnName": "meatMax",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
             "fieldPath": "fatConsumed",
             "columnName": "fatConsumed",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "fatMax",
-            "columnName": "fatMax",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "date"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "height_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT NOT NULL, `height` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `height` REAL NOT NULL, PRIMARY KEY(`date`))",
         "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
           {
             "fieldPath": "date",
             "columnName": "date",
@@ -127,23 +79,17 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "date"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
       },
       {
         "tableName": "weight_table",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `date` TEXT NOT NULL, `weight` REAL NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `weight` REAL NOT NULL, PRIMARY KEY(`date`))",
         "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
           {
             "fieldPath": "date",
             "columnName": "date",
@@ -159,9 +105,71 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "date"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "settings_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`date` TEXT NOT NULL, `fruitPortionsAllowed` INTEGER NOT NULL, `vegetablePortionsAllowed` INTEGER NOT NULL, `grainPortionsAllowed` INTEGER NOT NULL, `dairyPortionsAllowed` INTEGER NOT NULL, `meatPortionsAllowed` INTEGER NOT NULL, `fatPortionsAllowed` INTEGER NOT NULL, `intervalBetweenMeals` INTEGER NOT NULL, PRIMARY KEY(`date`))",
+        "fields": [
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fruitPortionsAllowed",
+            "columnName": "fruitPortionsAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vegetablePortionsAllowed",
+            "columnName": "vegetablePortionsAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "grainPortionsAllowed",
+            "columnName": "grainPortionsAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dairyPortionsAllowed",
+            "columnName": "dairyPortionsAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "meatPortionsAllowed",
+            "columnName": "meatPortionsAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fatPortionsAllowed",
+            "columnName": "fatPortionsAllowed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intervalBetweenMeals",
+            "columnName": "intervalBetweenMeals",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "date"
+          ],
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -169,7 +177,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"7f934d506107665333a7e8e22facf97e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9bfffc25b55bbea8873b1663c3307a48\")"
     ]
   }
 }

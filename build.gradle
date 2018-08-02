@@ -1,27 +1,34 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.51'
-    ext.roomVersion = '1.1.1'
-    ext.archLifecycleVersion = '1.1.1'
-    ext.jodaTimeVersion = '2.10'
-    ext.rxJavaVersion = '2.1.13'
-    ext.rxJavaAndroidVersion = '2.0.2'
-    ext.rxKotlin = '2.2.0'
     ext.androidSupportVersion = '27.1.1'
-    ext.ktxVersion = '0.3'
-    ext.daggerVersion = '2.16'
-    ext.timberVersion = '4.7.0'
+    ext.androidTestRunnerVersion = '1.0.2-alpha1'
+    ext.archLifecycleVersion = '1.1.1'
+    ext.chartVersion = 'v3.0.3'
     ext.daggerAndroidVersion = '2.16'
-    ext.rxRelayVersion = '2.0.0'
+    ext.daggerVersion = '2.16'
+    ext.gradleVersion = '3.1.3'
+    ext.jodaTimeVersion = '2.10'
+    ext.junitVersion = '4.12'
+    ext.kotlin_version = '1.2.51'
+    ext.ktxVersion = '0.3'
+    ext.mockitoVersion = "2.18.3"
+    ext.mockitoKotlinVersion = '1.5.0'
+    ext.roomVersion = '1.1.1'
     ext.rxBindingVersion = '2.1.1'
+    ext.rxJavaAndroidVersion = '2.0.2'
+    ext.rxJavaVersion = '2.1.13'
+    ext.rxKotlin = '2.2.0'
+    ext.rxRelayVersion = '2.0.0'
+    ext.timberVersion = '4.7.0'
     repositories {
         google()
         jcenter()
         maven { url 'https://plugins.gradle.org/m2/' }
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -33,6 +40,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
     }
 }
 

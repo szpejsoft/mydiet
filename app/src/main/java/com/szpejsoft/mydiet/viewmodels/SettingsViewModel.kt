@@ -4,10 +4,11 @@ import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.szpejsoft.mydiet.base.BaseViewModel
 import com.szpejsoft.mydiet.domain.Settings
+import com.szpejsoft.mydiet.repositories.SettingsRepository
 import com.szpejsoft.mydiet.utils.SchedulersFacade
-import com.szpejsoft.mydiet.repositories.ISettingsRepository
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
+import org.joda.time.LocalDate
 import javax.inject.Inject
 
 class SettingsViewModel
@@ -15,7 +16,7 @@ class SettingsViewModel
 constructor(
         application: Application,
         schedulersFacade: SchedulersFacade,
-        private val settingsRepository: ISettingsRepository
+        private val settingsRepository: SettingsRepository
 ) : BaseViewModel(application, schedulersFacade), ISettingsViewModel {
     override val fruitPortionsData = MutableLiveData<Int>()
     override val vegetablePortionsData = MutableLiveData<Int>()
@@ -36,13 +37,13 @@ constructor(
 
     init {
         saveButtonEnabledData.postValue(false)
-        settingsRepository.getSettings.subscribeOnCompObserveOnUIBy {
-            setAllowedFruitPortions(it.allowedFruitPortions)
-            setAllowedVegetablePortions(it.allowedVegetablePortions)
-            setAllowedGrainPortions(it.allowedGrainPortions)
-            setAllowedDairyPortions(it.allowedDairyPortions)
-            setAllowedMeatPortions(it.allowedMeatPortions)
-            setAllowedFatPortions(it.allowedFatPortions)
+        settingsRepository.getSettingsForDate(LocalDate.now()).subscribeOnCompObserveOnUIBy {
+            setAllowedFruitPortions(it.fruitPortionsAllowed)
+            setAllowedVegetablePortions(it.vegetablePortionsAllowed)
+            setAllowedGrainPortions(it.grainPortionsAllowed)
+            setAllowedDairyPortions(it.dairyPortionsAllowed)
+            setAllowedMeatPortions(it.meatPortionsAllowed)
+            setAllowedFatPortions(it.fatPortionsAllowed)
             setIntervalBetweenMeals(it.intervalBetweenMeals)
         }
     }
@@ -119,13 +120,14 @@ constructor(
 
     override fun onSaveBtnClicked(clicked: Observable<Any>) {
         clicked.subscribeBy {
-            settingsRepository.saveSettings(Settings(0,
-                    allowedFruitPortions = allowedFruitPortions,
-                    allowedVegetablePortions = allowedVegetablePortions,
-                    allowedGrainPortions = allowedGrainPortions,
-                    allowedDairyPortions = allowedDairyPortions,
-                    allowedMeatPortions = allowedMeatPortions,
-                    allowedFatPortions = allowedFatPortions,
+            settingsRepository.saveSettings(Settings(
+                    date = LocalDate.now(),
+                    fruitPortionsAllowed = allowedFruitPortions,
+                    vegetablePortionsAllowed = allowedVegetablePortions,
+                    grainPortionsAllowed = allowedGrainPortions,
+                    dairyPortionsAllowed = allowedDairyPortions,
+                    meatPortionsAllowed = allowedMeatPortions,
+                    fatPortionsAllowed = allowedFatPortions,
                     intervalBetweenMeals = intervalBetweenMeals
             ))
             saveButtonEnabledData.postValue(false)

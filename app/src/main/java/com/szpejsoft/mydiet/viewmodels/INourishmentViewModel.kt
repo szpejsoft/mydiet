@@ -13,7 +13,7 @@ interface INourishmentViewModel {
     val meatPortionsData: LiveData<Portions>
     val fatPortionsData: LiveData<Portions>
     val nextMealIntervalData: LiveData<String>
-    val nextMealAlarmSet: LiveData<MealAlarm> //TODO pokazać alert wyjeżdżający z góry (Alerter)
+    val nextMealAlarmSet: LiveData<MealAlarm> //TODO pokazać alert wyjeżdżający z góry z godziną następnego posiłku (Alerter)
 
     fun setFruitPortionsObservable(observable: Observable<Portions>)
     fun setVegetablePortionsObservable(observable: Observable<Portions>)
@@ -22,4 +22,13 @@ interface INourishmentViewModel {
     fun setMeatPortionsObservable(observable: Observable<Portions>)
     fun setFatPortionsObservable(observable: Observable<Portions>)
     fun setNextAlarm()
+
+    fun saveEatenFruitPortions(portions: Int)
+    fun saveEatenVegetablePortions(portions: Int)
+    fun saveEatenGrainPortions(portions: Int)
+    fun saveEatenDairyPortions(portions: Int)
+    fun saveEatenMeatPortions(portions: Int)
+    fun saveEatenFatPortions(portions: Int)
+    fun setNextMealAlarm(minutes: Int)
+
 }

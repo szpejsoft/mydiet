@@ -3,9 +3,11 @@ package com.szpejsoft.mydiet
 import android.app.Application
 import com.szpejsoft.mydiet.dagger.component.AppComponent
 import com.szpejsoft.mydiet.dagger.component.DaggerAppComponent
+import com.szpejsoft.mydiet.dagger.module.AlarmModule
 import com.szpejsoft.mydiet.dagger.module.AppModule
+import com.szpejsoft.mydiet.dagger.module.DataProvidersModule
 import com.szpejsoft.mydiet.dagger.module.SchedulersModule
-import com.szpejsoft.mydiet.dagger.module.ViewModelModule
+import com.szpejsoft.mydiet.db.MyDietDatabase
 import io.reactivex.plugins.RxJavaPlugins
 import timber.log.Timber
 
@@ -25,6 +27,8 @@ class MyDietApplication : Application() {
             DaggerAppComponent.builder()
                     .appModule(AppModule(this))
                     .schedulersModule(SchedulersModule())
+                    .dataProvidersModule(DataProvidersModule(MyDietDatabase.getInstance(this)))
+                    .alarmModule(AlarmModule())
                     .build()
 
     private fun setupRxErrorHandler() {

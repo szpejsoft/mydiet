@@ -55,6 +55,7 @@ dependencies {
     implementation "com.jakewharton.rxrelay2:rxrelay:$rxRelayVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxBindingVersion"
+
     //Dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
@@ -63,9 +64,26 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    //chart
+    implementation "com.github.PhilJay:MPAndroidChart:$chartVersion"
+
+    //Tests
+    androidTestImplementation("com.android.support.test:runner:$androidTestRunnerVersion") {
+    androidTestImplementation("android.arch.core:core-testing:1.0.0", {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+
+        // Mockito-Kotlin
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$mockitoKotlinVersion"
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    testImplementation "junit:junit:$junitVersion"
 
 }
