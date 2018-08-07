@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.screens.nourishment
+package com.szpejsoft.mydiet.screens.nourishments
 
 import android.widget.FrameLayout
 import android.content.Context

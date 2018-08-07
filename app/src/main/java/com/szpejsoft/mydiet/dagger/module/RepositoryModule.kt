@@ -6,7 +6,6 @@ import com.szpejsoft.mydiet.repositories.NourishmentRepository
 import com.szpejsoft.mydiet.repositories.NourishmentRepositoryImpl
 import com.szpejsoft.mydiet.repositories.SettingsRepository
 import com.szpejsoft.mydiet.repositories.SettingsRepositoryImpl
-import com.szpejsoft.mydiet.utils.SchedulersFacade
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -21,8 +20,6 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideNourishmentRepository(settingsDataProvider: SettingsDataProvider,
-                                     nourishmentDataProvider: NourishmentDataProvider,
-                                     schedulersFacade: SchedulersFacade): NourishmentRepository =
-            NourishmentRepositoryImpl(settingsDataProvider, nourishmentDataProvider, schedulersFacade)
+    fun provideNourishmentRepository(nourishmentDataProvider: NourishmentDataProvider): NourishmentRepository =
+            NourishmentRepositoryImpl(nourishmentDataProvider)
 }

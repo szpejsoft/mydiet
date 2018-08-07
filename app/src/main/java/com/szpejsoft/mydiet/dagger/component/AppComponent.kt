@@ -6,7 +6,8 @@ import com.szpejsoft.mydiet.MyDietApplication
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.dagger.module.*
 import com.szpejsoft.mydiet.screens.measurements.MeasurementsFragment
-import com.szpejsoft.mydiet.screens.nourishment.NourishmentFragment
+import com.szpejsoft.mydiet.screens.nourishments.NourishmentFragment
+import com.szpejsoft.mydiet.screens.nourishments.NourishmentListFragment
 import com.szpejsoft.mydiet.screens.settings.SettingsFragment
 import dagger.Component
 import javax.inject.Singleton
@@ -34,4 +35,6 @@ interface AppComponent {
     fun inject(fragment: SettingsFragment)
 
     fun inject(fragment: MeasurementsFragment)
+
+    fun inject(fragment: NourishmentListFragment)
 }

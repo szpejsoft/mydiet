@@ -2,9 +2,9 @@ package com.szpejsoft.mydiet
 
 import android.os.Bundle
 import com.szpejsoft.mydiet.screens.measurements.MeasurementsFragment
-import com.szpejsoft.mydiet.screens.nourishment.NourishmentFragment
+import com.szpejsoft.mydiet.screens.nourishments.NourishmentFragment
 import com.szpejsoft.mydiet.screens.settings.SettingsFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : MyDietActivity() {
     private lateinit var settingsFragment: SettingsFragment
@@ -12,7 +12,7 @@ class MainActivity : MyDietActivity() {
     private lateinit var measurementsFragment: MeasurementsFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.main_activity)
         setupNavigation()
     }
 

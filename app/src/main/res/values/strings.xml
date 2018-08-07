@@ -21,6 +21,12 @@
     <string name="settings_meals_interval">Interval between meals</string>
     <string name="settings_save_changes">Save changes</string>
     <string name="settings_interval_edit_title">Choose interval</string>
+    <string name="nourishment_list_fruits">Fruits</string>
+    <string name="nourishment_list_vegetables">Vegetables</string>
+    <string name="nourishment_list_grain">Grain</string>
+    <string name="nourishment_list_dairy">Dairy</string>
+    <string name="nourishment_list_meat">Meat</string>
+    <string name="nourishment_list_fat">Fat</string>
 
 
 </resources>

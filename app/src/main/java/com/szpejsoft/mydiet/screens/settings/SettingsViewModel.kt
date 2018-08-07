@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.viewmodels
+package com.szpejsoft.mydiet.screens.settings
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData

@@ -35,6 +35,28 @@ fun Completable.subscribeOnCompObserveOnUIBy(schedulers: SchedulersFacade,
         .observeOn(schedulers.ui())
         .subscribe(onComplete, onError)
 
+fun <T> Single<T>.subscribeOnCompObserveOnCompBy(schedulers: SchedulersFacade,
+                                                 onError: (Throwable) -> Unit = (Timber::w),
+                                                 onSuccess: (T) -> Unit
+) = subscribeOn(schedulers.computation())
+        .observeOn(schedulers.computation())
+        .subscribe(onSuccess, onError)
+
+fun <T> Observable<T>.subscribeOnCompObserveOnCompBy(schedulers: SchedulersFacade,
+                                                     onError: (Throwable) -> Unit = (Timber::w),
+                                                     onComplete: () -> Unit,
+                                                     onNext: (T) -> Unit
+) = subscribeOn(schedulers.computation())
+        .observeOn(schedulers.computation())
+        .subscribe(onNext, onError, onComplete)
+
+fun Completable.subscribeOnCompObserveOnCompBy(schedulers: SchedulersFacade,
+                                               onError: (Throwable) -> Unit = (Timber::w),
+                                               onComplete: () -> Unit = {}
+) = subscribeOn(schedulers.computation())
+        .observeOn(schedulers.computation())
+        .subscribe(onComplete, onError)
+
 
 fun <T> Observable<T>.debugToConsole(id: String) = this
         .doOnSubscribe { println("[$id] onSubscribe => $it") }
@@ -87,6 +109,6 @@ fun <T> Maybe<T>.debugToLogcat(id: String) = this
 fun <T> Maybe<T>.debugToConsole(id: String) = this
         .doOnSubscribe { println("[$id] onSubscribe => $it") }
         .doOnComplete { println("[$id] onComplete") }
-        .doOnSuccess{println("[$id] onSuccess")}
+        .doOnSuccess { println("[$id] onSuccess") }
         .doOnError { println("[$id] onError => $it") }
         .doOnDispose { println("[$id] onDispose") }

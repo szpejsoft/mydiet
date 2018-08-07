@@ -3,6 +3,7 @@ package com.szpejsoft.mydiet.base
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import com.szpejsoft.mydiet.plusAssign
+import com.szpejsoft.mydiet.subscribeOnCompObserveOnCompBy
 import com.szpejsoft.mydiet.subscribeOnCompObserveOnUIBy
 import com.szpejsoft.mydiet.utils.SchedulersFacade
 import io.reactivex.Completable
@@ -48,6 +49,17 @@ open class BaseViewModel(
             onNext: (T) -> Unit = {}
     ): Disposable {
         val subscribe = this.subscribeOnCompObserveOnUIBy(schedulersFacade, onError, onComplete, onNext)
+        compositeDisposable += subscribe
+        return subscribe
+    }
+
+
+    fun <T> Observable<T>.subscribeOnCompObserveOnCompBy(
+            onError: (Throwable) -> Unit = Timber::w,
+            onComplete: () -> Unit = {},
+            onNext: (T) -> Unit = {}
+    ): Disposable {
+        val subscribe = this.subscribeOnCompObserveOnCompBy(schedulersFacade, onError, onComplete, onNext)
         compositeDisposable += subscribe
         return subscribe
     }

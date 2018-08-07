@@ -1,4 +1,4 @@
-package com.szpejsoft.mydiet.screens.nourishment
+package com.szpejsoft.mydiet.screens.nourishments
 
 
 import android.arch.lifecycle.Observer
@@ -7,13 +7,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.core.widget.toast
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
 import com.szpejsoft.mydiet.domain.MealAlarm
 import com.szpejsoft.mydiet.domain.Portions
-import com.szpejsoft.mydiet.viewmodels.INourishmentViewModel
-import com.szpejsoft.mydiet.viewmodels.NourishmentViewModel
 import kotlinx.android.synthetic.main.nourishment_layout.*
+import org.joda.time.LocalDate
 
 class NourishmentFragment : MyDietFragment() {
 
@@ -28,6 +29,8 @@ class NourishmentFragment : MyDietFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
+        //TODO to tylko do testów
+        nourishmentViewModel.setDate(LocalDate())
     }
 
     private fun observeViewModel() {
@@ -38,8 +41,9 @@ class NourishmentFragment : MyDietFragment() {
             grainPortionsData.observe(this@NourishmentFragment, Observer { portions -> setPortions(portions, grainProductsPortionCounter) })
             vegetablePortionsData.observe(this@NourishmentFragment, Observer { portions -> setPortions(portions, vegetablesPortionCounter) })
             meatPortionsData.observe(this@NourishmentFragment, Observer { portions -> setPortions(portions, meatPortionCounter) })
-            nextMealIntervalData.observe(this@NourishmentFragment, Observer { minutesToNextMeal -> setNextAlertButtonTitle(minutesToNextMeal) })
+            nextMealIntervalData.observe(this@NourishmentFragment, Observer { minutesToNextMeal -> setNextAlertButtonText(minutesToNextMeal) })
             nextMealAlarmSet.observe(this@NourishmentFragment, Observer { mealAlarm -> showNextMealAlarm(mealAlarm) })
+            showSetNextAlarmButton.observe(this@NourishmentFragment, Observer { show -> showSetNextMealAlarmButton(show) })
         }
     }
 
@@ -49,12 +53,18 @@ class NourishmentFragment : MyDietFragment() {
         portionCounter.setPortions(portions.eaten, portions.allowed)
     }
 
-    private fun setNextAlertButtonTitle(minutes: String?) {
+    private fun setNextAlertButtonText(minutes: String?) {
         nextMealAlertButton.text = context?.getString(R.string.nourishment_next_alarm, minutes)
     }
 
     private fun showNextMealAlarm(mealAlarm: MealAlarm?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mealAlarm ?: return
+        activity?.toast(mealAlarm.message)
+    }
+
+    private fun showSetNextMealAlarmButton(show: Boolean?) {
+        val show = show ?: true
+        nextMealAlertButton.isVisible = show
     }
 
 }

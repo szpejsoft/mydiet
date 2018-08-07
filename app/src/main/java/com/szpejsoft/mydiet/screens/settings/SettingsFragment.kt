@@ -13,8 +13,6 @@ import com.jakewharton.rxrelay2.BehaviorRelay
 import com.szpejsoft.mydiet.MyDietFragment
 import com.szpejsoft.mydiet.R
 import com.szpejsoft.mydiet.formatInterval
-import com.szpejsoft.mydiet.viewmodels.ISettingsViewModel
-import com.szpejsoft.mydiet.viewmodels.SettingsViewModel
 import kotlinx.android.synthetic.main.settings_fragment.*
 
 class SettingsFragment : MyDietFragment() {
