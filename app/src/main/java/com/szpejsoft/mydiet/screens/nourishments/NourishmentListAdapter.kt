@@ -38,7 +38,9 @@ class NourishmentListAdapter(val context: Context) : RecyclerView.Adapter<Nouris
     }
 
     fun setNourishments(nourishments: List<Nourishment>) {
-        no
+        nourishmentList.clear()
+        nourishmentList.addAll(nourishments)
+        notifyDataSetChanged()
     }
 
 
